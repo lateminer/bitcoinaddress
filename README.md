@@ -1,3 +1,50 @@
+# Blackcoin Address
+
+There is an adaptation of [bitcoinwallet](https://github.com/fortesp/bitcoinaddress) for Blackcoin.
+
+## Dependencies
+```
+pip install base58
+pip install ecdsa
+```
+
+It is possible that you face troubles with `ripemd160` hashing algorighm. To solve the issue, follow the steps below:
+
+1) Find the directory with OpenSSL config file:
+
+```
+openssl version -d
+```
+
+2) Edit it:
+```
+sudo nano openssl.cnf
+```
+
+3) Make sure it contains following lines:
+```
+openssl_conf = openssl_init
+
+[openssl_init]
+providers = provider_sect
+
+[provider_sect]
+default = default_sect
+legacy = legacy_sect
+
+[default_sect]
+activate = 1
+
+[legacy_sect]
+activate = 1
+```
+
+Solution described on Stack Overflow: https://stackoverflow.com/questions/69922525/python-3-9-8-hashlib-and-ripemd160
+
+## Usage
+For the usage examples see original README below.
+
+
 # Bitcoin Address
 
 [![](https://img.shields.io/github/v/release/fortesp/bitcoinaddress)](https://github.com/fortesp/bitcoinaddress)
